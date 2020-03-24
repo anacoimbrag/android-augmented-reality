@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.main_item.view.*
 
-class MainAdapter() :
-    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,6 +40,9 @@ class MainAdapter() :
                         0,
                         0
                     )
+                    title.setOnClickListener {
+                        ObjectPlacementActivity.start(context)
+                    }
                 }
                 TYPE_AUGMENTED_IMAGE -> {
                     title.setText(R.string.title_augmented_image)

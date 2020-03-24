@@ -5,4 +5,5 @@
     <string name="title_augmented_image">Imagem Aumentada</string>
     <string name="title_augmented_face">Face Aumentada</string>
     <string name="title_cloud_anchor">Âncora na Nuvem</string>
+    <string name="error_loading_model">Não foi possível carregar o modelo.</string>
 </resources>

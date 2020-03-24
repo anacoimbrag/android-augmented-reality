@@ -4,4 +4,6 @@
     <string name="title_augmented_image">Augmented Image</string>
     <string name="title_augmented_face">Augmented Face</string>
     <string name="title_cloud_anchor">Cloud Anchor</string>
+    <string name="error_loading_model">Could not load model object</string>
+    <string name="error_opengl_min_version">This app requires OpenGL ES 3.0 or later</string>
 </resources>
