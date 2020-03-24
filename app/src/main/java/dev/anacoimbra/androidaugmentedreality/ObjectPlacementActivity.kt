@@ -19,7 +19,7 @@ import com.google.ar.sceneform.ux.TransformableNode
 
 class ObjectPlacementActivity : AppCompatActivity() {
 
-    private lateinit var arFragment: ArFragment
+    private val arFragment = ArFragment()
     private lateinit var renderable: ModelRenderable
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +29,7 @@ class ObjectPlacementActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_ar)
 
-        arFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_ar) as? ArFragment ?: return
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_ar, arFragment).commit()
 
         renderModel()
         setupPlaneTap()
