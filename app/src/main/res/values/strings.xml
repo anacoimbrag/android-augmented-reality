@@ -6,4 +6,10 @@
     <string name="title_cloud_anchor">Cloud Anchor</string>
     <string name="error_loading_model">Could not load model object</string>
     <string name="error_opengl_min_version">This app requires OpenGL ES 3.0 or later</string>
+    <string name="error_install_arcore">Please install Play Services for AR</string>
+    <string name="error_update_arcore">Please update Play Services for AR</string>
+    <string name="error_update_app">Please update this app</string>
+    <string name="error_unsuported_device">This device does not support AR</string>
+    <string name="error_generic_arcore">Could not initialize session</string>
+    <string name="image_detected_placeholder">Detected image: %s</string>
 </resources>

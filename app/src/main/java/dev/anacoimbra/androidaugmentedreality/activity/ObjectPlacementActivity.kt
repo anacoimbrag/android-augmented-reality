@@ -1,4 +1,4 @@
-package dev.anacoimbra.androidaugmentedreality
+package dev.anacoimbra.androidaugmentedreality.activity
 
 import android.app.Activity
 import android.app.ActivityManager
@@ -16,6 +16,7 @@ import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
+import dev.anacoimbra.androidaugmentedreality.R
 
 class ObjectPlacementActivity : AppCompatActivity() {
 

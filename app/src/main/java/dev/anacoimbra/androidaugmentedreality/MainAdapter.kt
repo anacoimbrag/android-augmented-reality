@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import dev.anacoimbra.androidaugmentedreality.activity.AugmentedImageActivity
+import dev.anacoimbra.androidaugmentedreality.activity.ObjectPlacementActivity
 import kotlinx.android.synthetic.main.main_item.view.*
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
@@ -52,6 +54,9 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
                         0,
                         0
                     )
+                    title.setOnClickListener {
+                        AugmentedImageActivity.start(context)
+                    }
                 }
                 TYPE_AUGMENTED_FACE -> {
                     title.setText(R.string.title_augmented_face)

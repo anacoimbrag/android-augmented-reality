@@ -6,4 +6,11 @@
     <string name="title_augmented_face">Face Aumentada</string>
     <string name="title_cloud_anchor">Âncora na Nuvem</string>
     <string name="error_loading_model">Não foi possível carregar o modelo.</string>
+    <string name="error_opengl_min_version">Este app necessita do OpenGL 3.0 ou superior</string>
+    <string name="error_install_arcore">Por favor, instale o Play Services for AR</string>
+    <string name="error_update_arcore">Por favor atualize o Play Services for AR</string>
+    <string name="error_update_app">Por favor, atualize este aplicativo</string>
+    <string name="error_unsuported_device">Este dispositivo não suporta realidade aumentada</string>
+    <string name="error_generic_arcore">Não foi possível iniciar a sessão.</string>
+    <string name="image_detected_placeholder">Imagem detectada: %s</string>
 </resources>
