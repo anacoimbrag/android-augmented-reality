@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android Augmented Reality</string>
+    <string name="title_object_placement">Object placement</string>
+    <string name="title_augmented_image">Augmented Image</string>
+    <string name="title_augmented_face">Augmented Face</string>
+    <string name="title_cloud_anchor">Cloud Anchor</string>
+</resources>

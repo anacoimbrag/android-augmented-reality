@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Realidade Aumentada no Android</string>
+    <string name="title_object_placement">Posicionamento de objeto</string>
+    <string name="title_augmented_image">Imagem Aumentada</string>
+    <string name="title_augmented_face">Face Aumentada</string>
+    <string name="title_cloud_anchor">Âncora na Nuvem</string>
+</resources>
