@@ -27,7 +27,7 @@ class AugmentedImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ar)
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_ar, arFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_ar, arFragment).commit()
         renderModel()
         setupUpdate()
     }
