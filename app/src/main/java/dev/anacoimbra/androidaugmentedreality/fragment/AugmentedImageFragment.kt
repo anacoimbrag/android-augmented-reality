@@ -45,7 +45,7 @@ class AugmentedImageFragment : BaseArFragment() {
             is UnavailableArcoreNotInstalledException -> R.string.error_install_arcore
             is UnavailableApkTooOldException -> R.string.error_update_arcore
             is UnavailableSdkTooOldException -> R.string.error_update_app
-            is UnavailableDeviceNotCompatibleException -> R.string.error_unsuported_device
+            is UnavailableDeviceNotCompatibleException -> R.string.error_unsupported_device
             else -> R.string.error_generic_arcore
         }
         Log.e(TAG, "Error: $message", sessionException)

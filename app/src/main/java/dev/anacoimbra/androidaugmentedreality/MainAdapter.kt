@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.anacoimbra.androidaugmentedreality.activity.AugmentedImageActivity
+import dev.anacoimbra.androidaugmentedreality.activity.NoArActivity
 import dev.anacoimbra.androidaugmentedreality.activity.ObjectPlacementActivity
 import kotlinx.android.synthetic.main.main_item.view.*
 
@@ -27,7 +28,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
         const val TYPE_OBJECT_PLACEMENT = 0
         const val TYPE_AUGMENTED_IMAGE = 1
-        const val TYPE_AUGMENTED_FACE = 2
+        const val TYPE_NO_AR = 2
         const val TYPE_CLOUD_ANCHOR = 3
     }
 
@@ -58,14 +59,17 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
                         AugmentedImageActivity.start(context)
                     }
                 }
-                TYPE_AUGMENTED_FACE -> {
-                    title.setText(R.string.title_augmented_face)
+                TYPE_NO_AR -> {
+                    title.setText(R.string.title_no_ar)
                     title.setCompoundDrawablesRelativeWithIntrinsicBounds(
                         0,
-                        R.drawable.ic_augmented_face,
+                        R.drawable.ic_no_ar,
                         0,
                         0
                     )
+                    title.setOnClickListener {
+                        NoArActivity.start(context)
+                    }
                 }
                 TYPE_CLOUD_ANCHOR -> {
                     title.setText(R.string.title_cloud_anchor)

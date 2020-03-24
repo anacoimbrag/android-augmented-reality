@@ -16,7 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AugmentedImageActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +26,16 @@
         <activity
             android:name=".activity.ObjectPlacementActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".activity.AugmentedImageActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".activity.NoArActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.ar.core"
