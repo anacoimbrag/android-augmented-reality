@@ -1,4 +1,4 @@
-package dev.anacoimbra.androidaugmentedreality
+package dev.anacoimbra.androidaugmentedreality.app
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext

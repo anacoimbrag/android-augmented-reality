@@ -1,4 +1,4 @@
-package dev.anacoimbra.androidaugmentedreality
+package dev.anacoimbra.androidaugmentedreality.helpers
 
 import android.content.Context
 import android.content.SharedPreferences

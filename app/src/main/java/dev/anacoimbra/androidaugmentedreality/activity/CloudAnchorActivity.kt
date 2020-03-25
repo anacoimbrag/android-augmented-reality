@@ -20,7 +20,7 @@ import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.TransformableNode
-import dev.anacoimbra.androidaugmentedreality.AnchorManager
+import dev.anacoimbra.androidaugmentedreality.helpers.AnchorManager
 import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.fragment.CloudAnchorFragment
 import kotlinx.android.synthetic.main.activity_ar.*
