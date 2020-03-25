@@ -5,7 +5,7 @@ import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.ArCoreApk
-import dev.anacoimbra.androidaugmentedreality.MainAdapter
+import dev.anacoimbra.androidaugmentedreality.adapter.MainAdapter
 import dev.anacoimbra.androidaugmentedreality.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainItems.adapter = MainAdapter()
+        mainItems.adapter =
+            MainAdapter()
         maybeEnableButtons()
     }
 

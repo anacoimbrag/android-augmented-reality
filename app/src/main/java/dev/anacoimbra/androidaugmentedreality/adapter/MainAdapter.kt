@@ -1,10 +1,12 @@
-package dev.anacoimbra.androidaugmentedreality
+package dev.anacoimbra.androidaugmentedreality.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.activity.AugmentedImageActivity
+import dev.anacoimbra.androidaugmentedreality.activity.CloudAnchorActivity
 import dev.anacoimbra.androidaugmentedreality.activity.NoArActivity
 import dev.anacoimbra.androidaugmentedreality.activity.ObjectPlacementActivity
 import kotlinx.android.synthetic.main.main_item.view.*
@@ -17,7 +19,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = TYPES_COUNT
+    override fun getItemCount(): Int =
+        TYPES_COUNT
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind()
@@ -79,9 +82,10 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
                         0,
                         0
                     )
+                    title.setOnClickListener {
+                        CloudAnchorActivity.start(context)
+                    }
                 }
-            }
-            setOnClickListener {
             }
         }
     }

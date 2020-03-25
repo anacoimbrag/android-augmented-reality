@@ -13,4 +13,17 @@
     <string name="error_generic_arcore">Não foi possível iniciar a sessão.</string>
     <string name="image_detected_placeholder">Imagem detectada: %s</string>
     <string name="title_no_ar">Renderizar sem RA</string>
+    <string name="title_resolve_anchor">Resolver âncora</string>
+    <string name="text_resolve_anchor">Digite o código da âncora</string>
+    <string name="close">Fechar</string>
+    <string name="error_clear_anchor">Por favor, limpe a âncora</string>
+    <string name="message_hosting_anchor">Hospedando âncora</string>
+    <string name="message_resolving_anchor">Resolvendo âncora</string>
+    <string name="message_host_anchor">Âncora Hospedada: %d</string>
+    <string name="message_resolved_anchor">Âncora Resolvida</string>
+    <string name="error_resolved_anchor">Não foi possível resolver âncora</string>
+    <string name="error_hosted_anchor">Não foi possível hospedar âncora</string>
+    <string name="clear_anchor">Limpar Âncora</string>
+    <string name="resolve_anchor">Resolver Âncora</string>
+    <string name="host_anchor">Hospedar Âncora</string>
 </resources>

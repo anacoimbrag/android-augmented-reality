@@ -84,3 +84,5 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+debug/res/values/strings.xml
+release/res/values/strings.xml

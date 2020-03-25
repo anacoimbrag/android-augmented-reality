@@ -3,6 +3,7 @@
     package="dev.anacoimbra.androidaugmentedreality">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera.ar" />
     <uses-feature
@@ -10,6 +11,7 @@
         android:required="true" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -36,10 +38,18 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="locked"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CloudAnchorActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="locked" />
 
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
+
+        <meta-data
+            android:name="com.google.android.ar.API_KEY"
+            android:value="@string/google_api_key" />
     </application>
 
 </manifest>

@@ -16,4 +16,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AnchorButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="backgroundTint">@color/secondaryColor</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

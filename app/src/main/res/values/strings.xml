@@ -12,4 +12,17 @@
     <string name="error_generic_arcore">Could not initialize session</string>
     <string name="image_detected_placeholder">Detected image: %s</string>
     <string name="title_no_ar">Render without AR</string>
+    <string name="title_resolve_anchor">Resolve anchor</string>
+    <string name="text_resolve_anchor">Type the cloud anchor code</string>
+    <string name="close">Close</string>
+    <string name="error_clear_anchor">Please clear the anchor</string>
+    <string name="message_hosting_anchor">Hosting anchor</string>
+    <string name="message_resolving_anchor">Resolving anchor</string>
+    <string name="message_host_anchor">Anchor hosted: %d</string>
+    <string name="message_resolved_anchor">Anchor resolved</string>
+    <string name="error_resolved_anchor">Could not resolve anchor</string>
+    <string name="error_hosted_anchor">Could not host anchor</string>
+    <string name="clear_anchor">Clear Anchor</string>
+    <string name="resolve_anchor">Resolve Anchor</string>
+    <string name="host_anchor">Host Anchor</string>
 </resources>
