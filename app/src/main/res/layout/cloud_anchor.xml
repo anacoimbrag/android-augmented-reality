@@ -12,10 +12,11 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:layout_margin="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="60dp"
         android:backgroundTint="@color/secondaryLightColor"
         android:text="@string/clear_anchor"
-        app:layout_constraintBottom_toTopOf="@id/txtMessage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -29,16 +30,5 @@
         app:layout_anchorGravity="top"
         app:layout_constraintBottom_toTopOf="@id/btnClear"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txtMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/messageColor"
-        android:padding="12dp"
-        android:textColor="@color/primaryLightColor"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Some error occurred resolving anchors" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

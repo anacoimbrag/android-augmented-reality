@@ -3,6 +3,14 @@ package dev.anacoimbra.androidaugmentedreality.helpers
 import android.content.SharedPreferences
 import org.koin.java.KoinJavaComponent.inject
 
+enum class AnchorState {
+    NONE,
+    HOSTING,
+    HOSTED,
+    RESOLVING,
+    RESOLVED
+}
+
 object AnchorManager {
     private const val NEXT_SHORT_CODE = "next_short_code"
     private const val KEY_PREFIX = "anchor-"
@@ -25,6 +33,5 @@ object AnchorManager {
         return nextCode
     }
 
-    fun getCloudAnchorId(code: String) = pref.get<String>(
-        KEY_PREFIX + code)
+    fun getCloudAnchorId(code: String) = pref.get<String>(KEY_PREFIX + code)
 }

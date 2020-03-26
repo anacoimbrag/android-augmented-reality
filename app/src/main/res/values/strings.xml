@@ -25,4 +25,5 @@
     <string name="clear_anchor">Clear Anchor</string>
     <string name="resolve_anchor">Resolve Anchor</string>
     <string name="host_anchor">Host Anchor</string>
+    <string name="anchor_code_hint">Anchor code</string>
 </resources>

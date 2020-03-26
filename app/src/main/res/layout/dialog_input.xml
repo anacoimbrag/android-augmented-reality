@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:hint="@string/anchor_code_hint"
+    app:boxBackgroundMode="outline"
+    app:boxStrokeColor="@color/secondaryColor"
+    app:hintTextColor="@color/secondaryColor">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inputCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+
+</com.google.android.material.textfield.TextInputLayout>

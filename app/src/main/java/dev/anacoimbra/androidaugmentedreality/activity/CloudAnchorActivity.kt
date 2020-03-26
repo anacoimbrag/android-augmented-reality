@@ -2,72 +2,55 @@ package dev.anacoimbra.androidaugmentedreality.activity
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
-import com.google.android.material.snackbar.Snackbar
 import com.google.ar.core.Anchor
-import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
-import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.assets.RenderableSource
-import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.ux.TransformableNode
-import dev.anacoimbra.androidaugmentedreality.helpers.AnchorManager
 import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.fragment.CloudAnchorFragment
+import dev.anacoimbra.androidaugmentedreality.helpers.AnchorManager
+import dev.anacoimbra.androidaugmentedreality.helpers.AnchorState
+import dev.anacoimbra.androidaugmentedreality.helpers.RenderableManager
 import kotlinx.android.synthetic.main.activity_ar.*
-import kotlinx.android.synthetic.main.cloud_anchor.*
 import kotlinx.android.synthetic.main.cloud_anchor.view.*
+import kotlinx.android.synthetic.main.controls.*
+import kotlinx.android.synthetic.main.dialog_input.view.*
 
-class CloudAnchorActivity : AppCompatActivity() {
+class CloudAnchorActivity : BaseArActivity() {
 
-    enum class AnchorState {
-        NONE,
-        HOSTING,
-        HOSTED,
-        RESOLVING,
-        RESOLVED
-    }
-
-    private val arFragment = CloudAnchorFragment()
+    override val arFragment = CloudAnchorFragment()
     private var cloudAnchor: Anchor? = null
-    private lateinit var renderable: ModelRenderable
 
     private var state = AnchorState.NONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_ar)
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_ar, arFragment).commit()
-
-        renderModel()
-
-        val view = layoutInflater.inflate(R.layout.cloud_anchor, container)
-
-        view.btnClear.setOnClickListener {
-            clearCloudAnchor()
-        }
-
-        view.btnRetrieve.setOnClickListener {
-            resolveCloudAnchor()
-        }
-
-        Handler().postDelayed({
+        replaceFragment {
             hostCloudAnchor()
             arFragment.arSceneView.scene.addOnUpdateListener {
                 checkState()
             }
-        }, 300)
+        }
+
+        RenderableManager.loadRenderable(this, scale = 0.3f, onSuccess = ::renderable.setter)
+        renderCloudView()
+    }
+
+    private fun renderCloudView() {
+        val view = layoutInflater.inflate(R.layout.cloud_anchor, container)
+
+        with(view) {
+            btnClear.setOnClickListener {
+                clearCloudAnchor()
+            }
+
+            btnRetrieve.setOnClickListener {
+                resolveCloudAnchor()
+            }
+        }
     }
 
     private fun cloudAnchor(newAnchor: Anchor?) {
@@ -82,11 +65,11 @@ class CloudAnchorActivity : AppCompatActivity() {
                 return@setOnTapArPlaneListener
 
             val anchor = arFragment.arSceneView.session?.hostCloudAnchor(hitResult.createAnchor())
+                ?: return@setOnTapArPlaneListener
             cloudAnchor(anchor)
             state = AnchorState.HOSTING
             showMessage(R.string.message_hosting_anchor)
-            val anchorNode = createAnchorNode(hitResult)
-            createTransformableNode(anchorNode)
+            placeNode(anchor)
         }
     }
 
@@ -100,29 +83,25 @@ class CloudAnchorActivity : AppCompatActivity() {
     }
 
     private fun buildDialog() {
-        val editText = AppCompatEditText(this).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        }
-        AlertDialog.Builder(this)
+        val view: View = layoutInflater.inflate(R.layout.dialog_input, null)
+        AlertDialog.Builder(this, R.style.Theme_MaterialComponents_DayNight_Dialog)
             .setTitle(R.string.title_resolve_anchor)
             .setMessage(R.string.text_resolve_anchor)
-            .setView(editText)
+            .setView(view)
             .setPositiveButton(android.R.string.ok) { dialog, _ ->
-                startResolving(editText.text.toString())
+                startResolving(view.inputCode.text.toString())
                 dialog.dismiss()
             }.show()
     }
 
     private fun startResolving(code: String) {
         val cloudId = AnchorManager.getCloudAnchorId(code)
-        val resolvedCloudAnchor = arFragment.arSceneView.session?.resolveCloudAnchor(cloudId)
+        val resolvedCloudAnchor =
+            arFragment.arSceneView.session?.resolveCloudAnchor(cloudId) ?: return
         cloudAnchor(resolvedCloudAnchor)
         state = AnchorState.RESOLVING
         showMessage(R.string.message_resolving_anchor)
-        createTransformableNode(AnchorNode(resolvedCloudAnchor).apply { setParent(arFragment.arSceneView.scene) })
+        placeNode(resolvedCloudAnchor)
     }
 
     private fun clearCloudAnchor() {
@@ -155,55 +134,7 @@ class CloudAnchorActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderModel() {
-        ModelRenderable.builder()
-            .setSource(
-                this, RenderableSource.builder()
-                    .setSource(this, Uri.parse("fox/fox.gltf"), RenderableSource.SourceType.GLTF2)
-                    .setScale(0.3f)
-                    .setRecenterMode(RenderableSource.RecenterMode.CENTER)
-                    .build()
-            )
-            .setRegistryId("Fox")
-            .build()
-            .thenAccept { renderable ->
-                this.renderable = renderable
-            }
-            .exceptionally { error ->
-                Log.e(TAG, error.localizedMessage, error)
-                Snackbar.make(
-                    findViewById(android.R.id.content),
-                    R.string.error_loading_model,
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                return@exceptionally null
-            }
-    }
-
-    private fun createAnchorNode(hitResult: HitResult) =
-        AnchorNode(hitResult.createAnchor()).apply {
-            setParent(arFragment.arSceneView.scene)
-        }
-
-    private fun createTransformableNode(anchorNode: AnchorNode) =
-        TransformableNode(arFragment.transformationSystem).apply {
-            setParent(anchorNode)
-            renderable = this@CloudAnchorActivity.renderable
-            select()
-        }
-
-    private fun showMessage(@StringRes message: Int) {
-        txtMessage.visibility = View.VISIBLE
-        txtMessage.setText(message)
-    }
-
-    private fun showMessage(message: String) {
-        txtMessage.visibility = View.VISIBLE
-        txtMessage.text = message
-    }
-
     companion object {
-        private const val TAG = "Cloud Anchor"
         fun start(context: Context) =
             context.startActivity(Intent(context, CloudAnchorActivity::class.java))
     }

@@ -26,4 +26,5 @@
     <string name="clear_anchor">Limpar Âncora</string>
     <string name="resolve_anchor">Resolver Âncora</string>
     <string name="host_anchor">Hospedar Âncora</string>
+    <string name="anchor_code_hint">Código da âncora</string>
 </resources>
