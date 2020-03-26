@@ -27,4 +27,6 @@
     <string name="resolve_anchor">Resolver Âncora</string>
     <string name="host_anchor">Hospedar Âncora</string>
     <string name="anchor_code_hint">Código da âncora</string>
+    <string name="error_take_screenshot">Não foi possível obter imagem da cena</string>
+    <string name="share_with">Compartilhar com:</string>
 </resources>

@@ -11,4 +11,6 @@
         android:layout_height="match_parent"
         android:background="@color/primaryLightColor" />
 
+    <include layout="@layout/controls" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

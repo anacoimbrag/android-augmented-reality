@@ -8,9 +8,7 @@ import com.google.ar.core.AugmentedImage
 import com.google.ar.core.TrackingState
 import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.fragment.AugmentedImageFragment
-import dev.anacoimbra.androidaugmentedreality.helpers.RenderableManager
-import dev.anacoimbra.androidaugmentedreality.helpers.createAnchor
-import dev.anacoimbra.androidaugmentedreality.helpers.createNode
+import dev.anacoimbra.androidaugmentedreality.helpers.loadRenderable
 
 class AugmentedImageActivity : BaseArActivity() {
 
@@ -19,12 +17,10 @@ class AugmentedImageActivity : BaseArActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ar)
-
         replaceFragment {
             setupUpdate()
         }
-        RenderableManager.loadRenderable(this, onSuccess = ::renderable.setter)
+        loadRenderable(this, onSuccess = ::renderable.setter)
     }
 
     private fun setupUpdate() {
@@ -62,7 +58,7 @@ class AugmentedImageActivity : BaseArActivity() {
     private fun setImage(image: AugmentedImage) {
         if (!hasRendered()) return
 
-       placeNode(image.createAnchor(image.centerPose))
+        placeNode(image.createAnchor(image.centerPose))
     }
 
     companion object {

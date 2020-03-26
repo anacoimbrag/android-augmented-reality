@@ -28,11 +28,13 @@
         <activity
             android:name=".activity.ObjectPlacementActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AugmentedImageActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.NoArActivity"
             android:configChanges="orientation|screenSize"
@@ -41,7 +43,8 @@
         <activity
             android:name=".activity.CloudAnchorActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.ar.core"
@@ -50,6 +53,16 @@
         <meta-data
             android:name="com.google.android.ar.API_KEY"
             android:value="@string/google_api_key" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider" />
+        </provider>
     </application>
 
 </manifest>

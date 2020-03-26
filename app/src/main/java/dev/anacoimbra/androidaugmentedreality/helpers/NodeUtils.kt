@@ -2,7 +2,7 @@ package dev.anacoimbra.androidaugmentedreality.helpers
 
 import com.google.ar.core.Anchor
 import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.Node
+import com.google.ar.sceneform.NodeParent
 import com.google.ar.sceneform.Scene
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.TransformableNode
@@ -14,7 +14,7 @@ fun Scene.createAnchor(anchor: Anchor) =
     }
 
 fun TransformationSystem.createNode(
-    parent: Node,
+    parent: NodeParent,
     renderable: ModelRenderable,
     setRenderable: Boolean = true,
     select: Boolean = true

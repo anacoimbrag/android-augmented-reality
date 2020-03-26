@@ -11,7 +11,7 @@ import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.fragment.CloudAnchorFragment
 import dev.anacoimbra.androidaugmentedreality.helpers.AnchorManager
 import dev.anacoimbra.androidaugmentedreality.helpers.AnchorState
-import dev.anacoimbra.androidaugmentedreality.helpers.RenderableManager
+import dev.anacoimbra.androidaugmentedreality.helpers.loadRenderable
 import kotlinx.android.synthetic.main.activity_ar.*
 import kotlinx.android.synthetic.main.cloud_anchor.view.*
 import kotlinx.android.synthetic.main.controls.*
@@ -26,8 +26,6 @@ class CloudAnchorActivity : BaseArActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ar)
-
         replaceFragment {
             hostCloudAnchor()
             arFragment.arSceneView.scene.addOnUpdateListener {
@@ -35,7 +33,7 @@ class CloudAnchorActivity : BaseArActivity() {
             }
         }
 
-        RenderableManager.loadRenderable(this, scale = 0.3f, onSuccess = ::renderable.setter)
+        loadRenderable(this, scale = 0.3f, onSuccess = ::renderable.setter)
         renderCloudView()
     }
 
@@ -91,17 +89,24 @@ class CloudAnchorActivity : BaseArActivity() {
             .setPositiveButton(android.R.string.ok) { dialog, _ ->
                 startResolving(view.inputCode.text.toString())
                 dialog.dismiss()
+            }.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.cancel()
             }.show()
     }
 
     private fun startResolving(code: String) {
-        val cloudId = AnchorManager.getCloudAnchorId(code)
-        val resolvedCloudAnchor =
-            arFragment.arSceneView.session?.resolveCloudAnchor(cloudId) ?: return
-        cloudAnchor(resolvedCloudAnchor)
-        state = AnchorState.RESOLVING
-        showMessage(R.string.message_resolving_anchor)
-        placeNode(resolvedCloudAnchor)
+        try {
+            val cloudId = AnchorManager.getCloudAnchorId(code)
+            val resolvedCloudAnchor =
+                arFragment.arSceneView.session?.resolveCloudAnchor(cloudId) ?: return
+            cloudAnchor(resolvedCloudAnchor)
+            state = AnchorState.RESOLVING
+            showMessage(R.string.message_resolving_anchor)
+            placeNode(resolvedCloudAnchor)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            showMessage(R.string.error_resolved_anchor)
+        }
     }
 
     private fun clearCloudAnchor() {

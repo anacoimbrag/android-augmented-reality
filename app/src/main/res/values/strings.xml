@@ -26,4 +26,6 @@
     <string name="resolve_anchor">Resolve Anchor</string>
     <string name="host_anchor">Host Anchor</string>
     <string name="anchor_code_hint">Anchor code</string>
+    <string name="error_take_screenshot">Could not take picture from scene</string>
+    <string name="share_with">Share with:</string>
 </resources>
