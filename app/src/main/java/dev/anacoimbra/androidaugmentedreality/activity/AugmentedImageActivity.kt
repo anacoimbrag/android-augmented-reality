@@ -3,7 +3,6 @@ package dev.anacoimbra.androidaugmentedreality.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import com.google.ar.core.AugmentedImage
 import com.google.ar.core.TrackingState
 import dev.anacoimbra.androidaugmentedreality.R
@@ -37,11 +36,7 @@ class AugmentedImageActivity : BaseArActivity() {
     private fun checkImage(image: AugmentedImage) {
         when (image.trackingState!!) {
             TrackingState.PAUSED -> {
-                Snackbar.make(
-                    findViewById(android.R.id.content),
-                    getString(R.string.image_detected_placeholder, image.name),
-                    Snackbar.LENGTH_SHORT
-                ).show()
+                showMessage(getString(R.string.image_detected_placeholder, image.name))
             }
             TrackingState.TRACKING -> {
                 if (!isRendered) {

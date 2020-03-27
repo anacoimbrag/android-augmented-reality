@@ -41,8 +41,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
 
     implementation 'com.google.ar:core:1.16.0'
-    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.15.0'
-    implementation 'com.google.ar.sceneform:assets:1.15.0'
+    implementation project(':sceneformux')
 
     implementation 'org.koin:koin-android:2.1.5'
 

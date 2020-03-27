@@ -28,4 +28,5 @@
     <string name="anchor_code_hint">Anchor code</string>
     <string name="error_take_screenshot">Could not take picture from scene</string>
     <string name="share_with">Share with:</string>
+    <string name="plane_detected">Plane detected</string>
 </resources>

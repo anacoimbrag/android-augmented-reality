@@ -55,9 +55,9 @@ abstract class BaseArActivity : AppCompatActivity() {
 
     protected fun hasRendered() = ::renderable.isInitialized
 
-    protected fun placeNode(anchor: Anchor) {
+    protected fun placeNode(anchor: Anchor, scale: Float = 0.5f) {
         val anchorNode = arFragment.arSceneView.scene.createAnchor(anchor)
-        arFragment.transformationSystem.createNode(anchorNode, renderable)
+        arFragment.transformationSystem.createNode(anchorNode, renderable, scale)
     }
 
     protected fun showMessage(@StringRes message: Int) {

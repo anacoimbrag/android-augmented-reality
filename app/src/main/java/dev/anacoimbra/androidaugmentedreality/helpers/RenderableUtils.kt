@@ -4,7 +4,6 @@ import android.app.Activity
 import android.net.Uri
 import android.util.Log
 import android.widget.TextView
-import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.activity.BaseArActivity
@@ -12,21 +11,11 @@ import dev.anacoimbra.androidaugmentedreality.activity.BaseArActivity
 fun loadRenderable(
     activity: Activity,
     file: String = "fox/fox.gltf",
-    scale: Float = 0.5f,
     onSuccess: (renderable: ModelRenderable) -> Unit
 ) {
     ModelRenderable.builder()
-        .setSource(
-            activity, RenderableSource.builder()
-                .setSource(
-                    activity,
-                    Uri.parse(file),
-                    RenderableSource.SourceType.GLTF2
-                )
-                .setScale(scale)
-                .setRecenterMode(RenderableSource.RecenterMode.CENTER)
-                .build()
-        )
+        .setSource(activity, Uri.parse(file))
+        .setIsFilamentGltf(true)
         .setRegistryId("Fox")
         .build()
         .thenAccept { renderable ->

@@ -33,7 +33,7 @@ class CloudAnchorActivity : BaseArActivity() {
             }
         }
 
-        loadRenderable(this, scale = 0.3f, onSuccess = ::renderable.setter)
+        loadRenderable(this, onSuccess = ::renderable.setter)
         renderCloudView()
     }
 
@@ -67,7 +67,7 @@ class CloudAnchorActivity : BaseArActivity() {
             cloudAnchor(anchor)
             state = AnchorState.HOSTING
             showMessage(R.string.message_hosting_anchor)
-            placeNode(anchor)
+            placeNode(anchor, 0.2f)
         }
     }
 

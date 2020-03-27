@@ -1,2 +1,8 @@
-include ':app'
 rootProject.name='Android Augmented Reality'
+include ':app'
+
+include ':sceneform'
+project(':sceneform').projectDir=new File('../sceneform-android-sdk/sceneformsrc/sceneform')
+
+include ':sceneformux'
+project(':sceneformux').projectDir=new File('../sceneform-android-sdk/sceneformux/ux')

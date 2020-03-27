@@ -23,7 +23,7 @@ class NoArActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_no_ar)
 
-        loadRenderable(this, scale = 0.3f, onSuccess = {
+        loadRenderable(this, onSuccess = {
             addNodeToScene(it)
         })
 
@@ -54,7 +54,7 @@ class NoArActivity : AppCompatActivity() {
     private fun addNodeToScene(model: ModelRenderable?) {
         val ts = TransformationSystem(resources.displayMetrics, FootprintSelectionVisualizer())
         model?.let {
-            ts.createNode(sceneView.scene, model).apply {
+            ts.createNode(sceneView.scene, model, 0.2f).apply {
                 localPosition = Vector3(0f, 0f, -2f)
                 localRotation =
                     Quaternion.lookRotation(Vector3(0.5f, 0f, -0.5f), Vector3(0.5f, 0f, -0.5f))
