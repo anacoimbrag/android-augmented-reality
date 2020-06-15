@@ -8,5 +8,5 @@
     android:layout_margin="6dp"
     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     app:spanCount="2"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     tools:listitem="@layout/main_item" />
