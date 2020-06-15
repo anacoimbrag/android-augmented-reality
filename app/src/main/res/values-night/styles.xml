@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryVariant</item>
-        <item name="colorAccent">@color/secondaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryLightColor</item>
         <item name="android:statusBarColor">@color/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar">?isLightTheme</item>
         <item name="android:navigationBarColor">@color/colorPrimaryVariant</item>
