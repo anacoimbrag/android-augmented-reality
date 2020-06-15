@@ -11,7 +11,8 @@ import dev.anacoimbra.androidaugmentedreality.activity.NoArActivity
 import dev.anacoimbra.androidaugmentedreality.activity.ObjectPlacementActivity
 import kotlinx.android.synthetic.main.main_item.view.*
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(private val hasAr: Boolean = false) :
+    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -19,20 +20,20 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int =
-        TYPES_COUNT
+    override fun getItemCount(): Int = typesCount
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind()
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind()
+
+    private val typesCount: Int
+        get() = if (hasAr) 4 else 1
+
+    private val typeNoAr: Int
+        get() = if (hasAr) 2 else 0
 
     companion object {
-        const val TYPES_COUNT = 4
-
-        const val TYPE_OBJECT_PLACEMENT = 0
-        const val TYPE_AUGMENTED_IMAGE = 1
-        const val TYPE_NO_AR = 2
-        const val TYPE_CLOUD_ANCHOR = 3
+        private const val TYPE_OBJECT_PLACEMENT = 0
+        private const val TYPE_AUGMENTED_IMAGE = 1
+        private const val TYPE_CLOUD_ANCHOR = 3
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -62,7 +63,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
                         AugmentedImageActivity.start(context)
                     }
                 }
-                TYPE_NO_AR -> {
+                typeNoAr -> {
                     title.setText(R.string.title_no_ar)
                     title.setCompoundDrawablesRelativeWithIntrinsicBounds(
                         0,

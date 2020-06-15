@@ -2,11 +2,10 @@ package dev.anacoimbra.androidaugmentedreality.activity
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.ArCoreApk
-import dev.anacoimbra.androidaugmentedreality.adapter.MainAdapter
 import dev.anacoimbra.androidaugmentedreality.R
+import dev.anacoimbra.androidaugmentedreality.adapter.MainAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -16,8 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainItems.adapter =
-            MainAdapter()
         maybeEnableButtons()
     }
 
@@ -26,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         if (availability.isTransient)
             Handler().postDelayed({ maybeEnableButtons() }, 200)
 
-        if (availability.isSupported) mainItems.visibility = View.VISIBLE
-        else mainItems.visibility = View.GONE
+        mainItems.adapter = MainAdapter(availability.isSupported)
     }
 }

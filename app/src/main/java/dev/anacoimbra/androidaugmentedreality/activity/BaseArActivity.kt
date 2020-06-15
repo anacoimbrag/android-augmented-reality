@@ -1,9 +1,11 @@
 package dev.anacoimbra.androidaugmentedreality.activity
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
+import android.graphics.Path
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,6 +20,7 @@ import dev.anacoimbra.androidaugmentedreality.helpers.createAnchor
 import dev.anacoimbra.androidaugmentedreality.helpers.createNode
 import dev.anacoimbra.androidaugmentedreality.helpers.screenShot
 import kotlinx.android.synthetic.main.controls.*
+import kotlinx.android.synthetic.main.instruction_view.*
 
 @SuppressLint("Registered")
 abstract class BaseArActivity : AppCompatActivity() {
@@ -27,11 +30,26 @@ abstract class BaseArActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!checkIsSupportedDeviceOrFinish(this))
+        if (!checkIsSupportedDeviceOrFinish())
             return
         setContentView(R.layout.activity_ar)
 
         setupControls()
+
+        val path = Path().apply {
+            addCircle(
+                250f,
+                resources.displayMetrics.heightPixels.div(2.0f),
+                100f,
+                Path.Direction.CCW
+            )
+        }
+        ObjectAnimator.ofFloat(handView, View.X, View.Y, path).apply {
+            repeatMode = ValueAnimator.REVERSE
+            repeatCount = ValueAnimator.INFINITE
+            duration = 1600
+            start()
+        }
     }
 
     private fun setupControls() {
@@ -55,7 +73,7 @@ abstract class BaseArActivity : AppCompatActivity() {
 
     protected fun hasRendered() = ::renderable.isInitialized
 
-    protected fun placeNode(anchor: Anchor, scale: Float = 0.5f) {
+    protected fun placeNode(anchor: Anchor, scale: Float = 0.2f) {
         val anchorNode = arFragment.arSceneView.scene.createAnchor(anchor)
         arFragment.transformationSystem.createNode(anchorNode, renderable, scale)
     }
@@ -70,19 +88,19 @@ abstract class BaseArActivity : AppCompatActivity() {
         txtMessage.text = message
     }
 
-    private fun checkIsSupportedDeviceOrFinish(activity: Activity): Boolean {
+    private fun checkIsSupportedDeviceOrFinish(): Boolean {
         val openGlVersionString =
-            (activity.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+            (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
                 .deviceConfigurationInfo
                 .glEsVersion
         if (openGlVersionString.toDouble() < MIN_OPENGL_VERSION) {
             Log.e(TAG, "Sceneform requires OpenGL ES 3.0 later")
             Toast.makeText(
-                activity,
+                this,
                 R.string.error_opengl_min_version,
                 Toast.LENGTH_LONG
             ).show()
-            activity.finish()
+            finish()
             return false
         }
         return true

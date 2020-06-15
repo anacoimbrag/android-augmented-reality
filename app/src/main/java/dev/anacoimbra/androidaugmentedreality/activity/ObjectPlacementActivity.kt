@@ -1,13 +1,12 @@
 package dev.anacoimbra.androidaugmentedreality.activity
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.google.ar.sceneform.rendering.PlaneRenderer
 import com.google.ar.sceneform.ux.ArFragment
-import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.helpers.loadRenderable
+import kotlinx.android.synthetic.main.activity_ar.*
 
 class ObjectPlacementActivity : BaseArActivity() {
 
@@ -24,11 +23,9 @@ class ObjectPlacementActivity : BaseArActivity() {
         loadRenderable(this, onSuccess = ::renderable.setter)
     }
 
-    @SuppressLint("InflateParams")
     private fun setupPlaneDiscovery() {
         arFragment.planeDiscoveryController.hide()
-        arFragment.planeDiscoveryController
-            .setInstructionView(layoutInflater.inflate(R.layout.instruction_view, null))
+        arFragment.planeDiscoveryController.setInstructionView(instructionView)
         arFragment.planeDiscoveryController.show()
     }
 

@@ -53,7 +53,7 @@ class AugmentedImageActivity : BaseArActivity() {
     private fun setImage(image: AugmentedImage) {
         if (!hasRendered()) return
 
-        placeNode(image.createAnchor(image.centerPose))
+        placeNode(image.createAnchor(image.centerPose), 0.1f)
     }
 
     companion object {

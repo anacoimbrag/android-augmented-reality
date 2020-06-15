@@ -27,6 +27,7 @@ class CloudAnchorActivity : BaseArActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         replaceFragment {
+            setupPlaneDiscovery()
             hostCloudAnchor()
             arFragment.arSceneView.scene.addOnUpdateListener {
                 checkState()
@@ -35,6 +36,12 @@ class CloudAnchorActivity : BaseArActivity() {
 
         loadRenderable(this, onSuccess = ::renderable.setter)
         renderCloudView()
+    }
+
+    private fun setupPlaneDiscovery() {
+        arFragment.planeDiscoveryController.hide()
+        arFragment.planeDiscoveryController.setInstructionView(instructionView)
+        arFragment.planeDiscoveryController.show()
     }
 
     private fun renderCloudView() {
@@ -67,7 +74,7 @@ class CloudAnchorActivity : BaseArActivity() {
             cloudAnchor(anchor)
             state = AnchorState.HOSTING
             showMessage(R.string.message_hosting_anchor)
-            placeNode(anchor, 0.2f)
+            placeNode(anchor)
         }
     }
 

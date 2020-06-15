@@ -4,6 +4,7 @@ import android.app.Activity
 import android.net.Uri
 import android.util.Log
 import android.widget.TextView
+import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import dev.anacoimbra.androidaugmentedreality.R
 import dev.anacoimbra.androidaugmentedreality.activity.BaseArActivity
@@ -14,8 +15,16 @@ fun loadRenderable(
     onSuccess: (renderable: ModelRenderable) -> Unit
 ) {
     ModelRenderable.builder()
-        .setSource(activity, Uri.parse(file))
-        .setIsFilamentGltf(true)
+        .setSource(
+            activity, RenderableSource.builder()
+                .setSource(
+                    activity,
+                    Uri.parse(file),
+                    RenderableSource.SourceType.GLTF2
+                )
+                .setRecenterMode(RenderableSource.RecenterMode.CENTER)
+                .build()
+        )
         .setRegistryId("Fox")
         .build()
         .thenAccept { renderable ->
