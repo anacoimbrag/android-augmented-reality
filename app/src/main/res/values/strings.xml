@@ -29,4 +29,6 @@
     <string name="error_take_screenshot">Could not take picture from scene</string>
     <string name="share_with">Share with:</string>
     <string name="plane_detected">Plane detected</string>
+    <string name="credits_text">This app is for education purpose only.\nThanks FlatIcon for all awesome icons ❤︎\nThanks for Poly by Google for the 3D models ❤︎\nYou can check this project code on Github</string>
+    <string name="privacy_policy">Privacy policy</string>
 </resources>

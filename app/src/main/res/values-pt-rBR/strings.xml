@@ -29,4 +29,7 @@
     <string name="anchor_code_hint">Código da âncora</string>
     <string name="error_take_screenshot">Não foi possível obter imagem da cena</string>
     <string name="share_with">Compartilhar com:</string>
+    <string name="plane_detected">Plano detectado</string>
+    <string name="credits_text">Esse app tem função exclusivamente educativa\\nObrigada FlatIcon pelos ícones incríveis ❤\\nAgradecimento a Poly by Google pelos modelos 3D ❤︎︎\\nVocê pode encontrar o código desse projeto no Github</string>
+    <string name="privacy_policy">Política de privacidade</string>
 </resources>
